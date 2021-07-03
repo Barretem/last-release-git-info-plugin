@@ -1,0 +1,48 @@
+{
+  "name": "@barretter/last-release-git-info-plugin",
+  "version": "1.0.0",
+  "description": "webpack plugin for create git info when build",
+  "author": "https://github.com/barretem",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/barretem/last-release-git-info-plugin.git"
+  },
+  "keywords": [
+    "webpack",
+    "plugin",
+    "git",
+    "commit"
+  ],
+  "files": [
+    "src",
+    "utils",
+    "index.js",
+    "nuxt.js"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "stdver": "standard-version -m '[skip ci] chore(release): v%s'"
+  },
+  "dependencies": {
+    "fs-extra": "^10.0.0",
+    "lodash.get": "^4.4.2"
+  },
+  "devDependencies": {
+    "husky": "^7.0.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "2.3.2",
+    "standard-version": "^9.3.0"
+  },
+  "lint-staged": {
+    "*.@(md|json)": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
