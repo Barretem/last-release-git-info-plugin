@@ -22,7 +22,9 @@ class LastRelease {
   constructor (options) {
     this.options = Object.assign(
       {
-        log: false, // 是否在控制台输出
+        buildLog: true, // 是否在构建的时候输出最新commit构建信息
+        log: false, // 是否在浏览器控制台输出构建信息
+        generateFile: true, // 是否生成构建信息文件
         releaseFileName: 'release_git_info.txt', // 最新构建信息
         showBuildTime: true, // 显示构建时间
         showBuildBranch: true, // 显示构建分支
@@ -49,6 +51,7 @@ class LastRelease {
       log,
       releaseFileName,
       externalTxt,
+      buildLog,
     } =  this.options
     // common
     if (process.env.NODE_ENV === 'development') return
@@ -66,6 +69,20 @@ class LastRelease {
       externalTxt,
     })
 
+    // 在构建的时候输出构建信息,会输出所有信息
+    if (buildLog) {
+      const buildLogText = getGitInfo({
+        showBuildTime: true,
+        showBuildBranch: true,
+        showBuildCommitId: true,
+        showDeveloperName: true,
+        showDeveloperEmail: true,
+        showBuildCommitInfo: true,
+        showBuildCommitDate: true,
+        externalTxt,
+      })
+      console.log(buildLogText)
+    }
      // 修改 webpack 入口文件
     if (log) {
       compiler.options.entry = resolveWebpackEntry(compiler.options.entry, {

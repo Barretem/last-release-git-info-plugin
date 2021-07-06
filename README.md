@@ -11,7 +11,9 @@
     - [在vue-cli中使用](#在vue-cli中使用)
     - [在nuxt.js中使用](#在nuxtjs中使用)
   - [Options](#options)
+    - [options.buildLog](#optionsbuildlog)
     - [options.log](#optionslog)
+    - [options.generateFile](#optionsgeneratefile)
     - [options.releaseFileName](#optionsreleasefilename)
     - [options.showBuildTime](#optionsshowbuildtime)
     - [options.showBuildBranch](#optionsshowbuildbranch)
@@ -22,12 +24,23 @@
     - [options.showBuildCommitInfo](#optionsshowbuildcommitinfo)
     - [options.externalTxt](#optionsexternaltxt)
   - [Notice](#notice)
-  - [Contributing](#contributing)
   - [License](#license)
 
 ## Features
 
-在构建的时候附带最新一次的构建信息（包括构建时间、构建分支、构建commitID、最近开发者名称、最近开发者邮箱、最新commit日期、最新commit信息）
+在构建的时候可以根据配置在**浏览器控制台**，以及**构建终端**的时候输出最新一次的构建信息（包括构建时间、构建分支、构建commitID、最近开发者名称、最近开发者邮箱、最新commit日期、最新commit信息）。注意：由于这些信息属于敏感信息，在生产环境不能在控制台输出这些构建信息！！生成的txt文件可以通过反爬虫防止爬虫爬取。
+
+生成的信息如下：
+
+```shell
+*********************************************************************
+构建日期: 2021-7-6 15:14
+构建分支: main
+构建commit:6539e75f3cf5686eda6892bce5986ae4674cf227
+commit时间:2021-7-3 16:03
+说明:feat: 🎸 添加access
+*********************************************************************
+```
 
 [⬆ Back to Top](#table-of-contents)
 
@@ -81,14 +94,26 @@ const config = {
 
 ## Options
 
+### options.buildLog
+
+- Type: `boolean`
+- Default: `false`
+
+是否在构建的时候输出最新一次的构建信息。
+
 ### options.log
 
 - Type: `boolean`
 - Default: `false`
 
-是否在控制台输出最新一次的构建信息。
+是否在浏览器控制台输出最新一次的构建信息。
 
-[⬆ Back to Top](#table-of-contents)
+### options.generateFile
+
+- Type: `boolean`
+- Default: `false`
+
+是否生成构建信息文件。
 
 ### options.releaseFileName
 
@@ -157,20 +182,6 @@ const config = {
 ## Notice
 
 目前该插件暂时不支持webpack5
-
-
-## Contributing
-
-For those who are interested in contributing to this project, such as:
-
-- report a bug
-- request new feature
-- fix a bug
-- implement a new feature
-
-Please refer to our [contributing guide](https://github.com/FEMessage/.github/blob/master/CONTRIBUTING.md).
-
-[⬆ Back to Top](#table-of-contents)
 
 ## License
 
